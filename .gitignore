@@ -1,2 +1,7 @@
 /criteria
+/tax
+
+__pycache__
+
 *.xlsx
+*.yml
