@@ -12,8 +12,8 @@ class load_criterion:
             self._folder_path = yaml.safe_load(f)['folder_path']
         
         self._file_path = os.path.join(self._folder_path, fname)
-
         self._fname = fname
+
         self.criteria = dict()
 
     def load_all(self):
