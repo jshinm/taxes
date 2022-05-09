@@ -7,16 +7,17 @@ warnings.simplefilter(action="ignore", category=SettingWithCopyWarning)
 
 from src.load_criterion import load_criterion as LC
 
-class read_worksheet:
+class read_worksheet(LC):
     '''Read Worksheet
     '''
     def __init__(self, fname):
-        lc = LC(fname=fname)
-        self.lc = lc.load_all()
+        super().__init__(fname=fname)
+        
+        self.load_all()
 
-        self.df_check = pd.read_excel(lc._file_path, sheet_name=1)
-        self.df_cc0 = pd.read_excel(lc._file_path, sheet_name=2)
-        self.df_cc1 = pd.read_excel(lc._file_path, sheet_name=3)
+        self.df_check = pd.read_excel(self._file_path, sheet_name=1)
+        self.df_cc0 = pd.read_excel(self._file_path, sheet_name=2)
+        self.df_cc1 = pd.read_excel(self._file_path, sheet_name=3)
 
         label1 = ['Date', 'Description', 'Amount']
         label2 = ['Posted Date', 'Description', 'Amount']
@@ -28,7 +29,7 @@ class read_worksheet:
 
         self.df_all = [self.df_check, self.df_cc0, self.df_cc1]
 
-        self.criteria = lc.criteria
+        self.criteria = self.criteria
 
         self.year = re.findall(pattern='[0-9]{4}', string=fname)[0]
 
