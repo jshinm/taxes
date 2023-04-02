@@ -9,7 +9,7 @@ class generate_worksheet(RW):
     def __init__(self, fname):
         super().__init__(fname=fname)
 
-        self.df_all_labeled = [None for i in range(3)]
+        self.df_all_labeled = [None for i in range(5)]
         self.df_concat = None
         self.df_oos = None
         self.df_categorical = None
@@ -38,14 +38,14 @@ class generate_worksheet(RW):
         self.oos_worksheet()
         self.df_concat = pd.concat([self.df_concat, self.df_oos])
 
-        self.df_concat.sort_values(['Category', 'Posted Date'], inplace=True)
-        self.df_concat['Posted Date'] = self.df_concat['Posted Date'].apply(lambda x: x.date())
+        self.df_concat.sort_values(['Category'], inplace=True)
+        # self.df_concat['Posted Date'] = self.df_concat['Posted Date'].apply(lambda x: x.date())
 
         if to_file:
             self.df_concat.to_excel(f'{self.year}_combined_loss.xlsx', index=False)
 
     def categorical_worksheet(self, to_file=False):
-        self.df_categorical = self.df_concat.groupby('Category').sum()[['Amount']]
+        self.df_categorical = self.df_concat.groupby('Category')[['Amount']].sum();
         self.df_categorical.Amount = abs(self.df_categorical.Amount)
         self.df_categorical.sort_index(inplace=True)
 
