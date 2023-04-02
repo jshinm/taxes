@@ -18,16 +18,20 @@ class read_worksheet(LC):
         self.df_check = pd.read_excel(self._file_path, sheet_name=1)
         self.df_cc0 = pd.read_excel(self._file_path, sheet_name=2)
         self.df_cc1 = pd.read_excel(self._file_path, sheet_name=3)
+        self.df_mr = pd.read_excel(self._file_path, sheet_name=4)
+        self.df_amex = pd.read_excel(self._file_path, sheet_name=5)
 
         label1 = ['Date', 'Description', 'Amount']
         label2 = ['Posted Date', 'Description', 'Amount']
 
         self.df_check = self.df_check[label1]
-        self.df_check.columns = label2
-        self.df_cc0 = self.df_cc0[label2]
-        self.df_cc1 = self.df_cc1[label2]
+        # self.df_check.columns = label2
+        self.df_cc0 = self.df_cc0[label1]
+        self.df_cc1 = self.df_cc1[label1]
+        self.df_mr = self.df_mr[label1]
+        self.df_amex = self.df_cc1[label1]
 
-        self.df_all = [self.df_check, self.df_cc0, self.df_cc1]
+        self.df_all = [self.df_check, self.df_cc0, self.df_cc1, self.df_mr, self.df_amex]
 
         self.criteria = self.criteria
 
@@ -37,7 +41,7 @@ class read_worksheet(LC):
         self.loss = None
 
     def preprocess(self, df_num=0, filter=None, as_file=False):
-        self.sheet_name = ['check', 'cc0', 'cc1'][df_num]
+        self.sheet_name = ['check', 'cc0', 'cc1', 'mr', 'amex'][df_num]
         df = self.df_all[df_num]
 
         self.profit = df.query('Amount > 0')
