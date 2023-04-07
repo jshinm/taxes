@@ -1,5 +1,5 @@
 # taxes
-tax prep for p&l statement from NFCU account import
+Prepares P&L statement from different bank accounts
 
 ## ToDos
 - Generalized back-end
