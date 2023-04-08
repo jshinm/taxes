@@ -1,5 +1,5 @@
-# taxes
-Prepares P&L statement from different bank accounts
+# MR Financial Web App
+Web application to parse/view/analyze uploaded financial transactions. It is originally meant to be a personal P&L statement generator for tax purposes.
 
 ## ToDos
 - Generalized back-end
