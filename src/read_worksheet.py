@@ -13,7 +13,7 @@ class read_worksheet(LC):
     '''
     def __init__(self, fname):
         super().__init__(fname=fname)
-        
+        #TODO: fix all these
         self.load_all()
 
         self.df_check = pd.read_excel(self._file_path, sheet_name=1)
@@ -23,10 +23,10 @@ class read_worksheet(LC):
         self.df_amex = pd.read_excel(self._file_path, sheet_name=5)
 
         label1 = ['Date', 'Description', 'Amount']
+        #TODO: remove label2
         label2 = ['Posted Date', 'Description', 'Amount']
 
         self.df_check = self.df_check[label1]
-        # self.df_check.columns = label2
         self.df_cc0 = self.df_cc0[label1]
         self.df_cc1 = self.df_cc1[label1]
         self.df_mr = self.df_mr[label1]
@@ -44,6 +44,7 @@ class read_worksheet(LC):
         self.loss = None
 
     def preprocess(self, df_num=0, filter=None, as_file=False):
+        #TODO: fix all these manual sheet names
         self.sheet_name = ['check', 'cc0', 'cc1', 'mr', 'amex'][df_num]
         df = self.df_all[df_num]
         df['Account'] = self.sheet_name
